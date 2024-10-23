@@ -1,4 +1,8 @@
 // index.js
+import dotenv from 'dotenv'
+dotenv.config({
+  path : 'src/.env'
+})
 import express from 'express';
 import connectDB from './config/db.js';
 import authRoutes from './routes/authRoutes.js';
@@ -221,6 +225,6 @@ app.get('/api/cards/:userId', async (req, res) => {
 
 
 
-app.listen(port, () => {
-  console.log(`Server is running on http://localhost:${port}`);
+app.listen(process.env.PORT, () => {
+  console.log(`Server is running on http://localhost:${process.env.PORT}`);
 });
