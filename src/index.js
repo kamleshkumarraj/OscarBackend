@@ -16,6 +16,7 @@ import ProductModel from './models/ProductModel.js';
 import {sendOrderMail} from "./services/emailService.js"
 
 import Card from './models/CardModel.js';
+import { orderHandlerRouter } from './routes/order.route.js';
 
 const stripe = new Stripe("sk_test_51NaHdVSB16uFZUayGCVHypLgKL4fRIuoZriMD9DOn1x1e5frVWq2siXj49xmNNiewNo957LQ0rLPJzEVOhi9YU6q00BoZfvm3K");
 
@@ -35,6 +36,8 @@ app.use('/auth', authRoutes);
 // Configure multer for file uploads
 const storage = multer.memoryStorage();
 const upload = multer({ storage });
+
+app.use( '/api/v1/' , orderHandlerRouter)
 
 app.post('/upload', upload.single('image'), async (req, res) => {
   if (!req.file) {
@@ -67,7 +70,7 @@ app.post('/upload', upload.single('image'), async (req, res) => {
 app.post('/create-payment-intent', async (req, res) => {
   try {
     let userEmail = "er.akhtarshoaib@gmail.com";
-    let adminEmail = "sa4366409@gmail.com";
+    let adminEmail = "kamlesh.22jics061@jietjodhpur.ac.in";
     const { items, customer, totalAmount  } = req.body;
 
    
@@ -107,6 +110,7 @@ app.post('/create-payment-intent', async (req, res) => {
     res.status(200).send({
       clientSecret: paymentIntent.client_secret,
     });
+
     if (result.error) {
       // Handle error
       console.error(result.error.message);
