@@ -6,7 +6,10 @@ const CardSchema = new mongoose.Schema({
     JSONCard: { type: Object, required: true }, // To store the card JSON object
     image : {type : String , required : true },
     userId: { type: String, required: true },
-    createdAt: { type: Date, default: Date.now }
+    price : {type : Number , required : true },
+    quantity : {type : Number , required : true },
+    createdAt: { type: Date, default: Date.now },
+    
 
 });
 
