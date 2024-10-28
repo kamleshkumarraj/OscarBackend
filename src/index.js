@@ -16,7 +16,6 @@ import ProductModel from './models/ProductModel.js';
 import {sendOrderMail} from "./services/emailService.js"
 
 import Card from './models/CardModel.js';
-import { orderHandlerRouter } from './routes/order.route.js';
 
 const stripe = new Stripe("sk_test_51NaHdVSB16uFZUayGCVHypLgKL4fRIuoZriMD9DOn1x1e5frVWq2siXj49xmNNiewNo957LQ0rLPJzEVOhi9YU6q00BoZfvm3K");
 
@@ -37,7 +36,7 @@ app.use('/auth', authRoutes);
 const storage = multer.memoryStorage();
 const upload = multer({ storage });
 
-app.use( '/api/v1/' , orderHandlerRouter)
+
 
 app.post('/upload', upload.single('image'), async (req, res) => {
   if (!req.file) {
