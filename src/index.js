@@ -68,8 +68,8 @@ app.post('/upload', upload.single('image'), async (req, res) => {
 
 app.post('/create-payment-intent', async (req, res) => {
   try {
-    let userEmail = "er.akhtarshoaib@gmail.com";
-    let adminEmail = "kamlesh.22jics061@jietjodhpur.ac.in";
+    let userEmail = "kamlesh.22jics061@jietjodhpur.ac.in";
+    let adminEmail = "contact@xendekweb.com";
     const { items, customer, totalAmount  } = req.body;
 
    
