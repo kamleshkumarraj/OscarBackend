@@ -23,7 +23,7 @@ const app = express();
 const port = 3000;
 
 connectDB(); 
-app.use(express.json());
+app.use(express.json({limit : '10mb'}));
 app.use(cors({
   origin : ["http://localhost:5173", "http://localhost:5174" , "https://oscar-print.vercel.app"],
   methods : ["GET", "HEAD", "OPTIONS", "POST", "PUT", "DELETE"],
