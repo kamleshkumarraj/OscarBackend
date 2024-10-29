@@ -16,6 +16,7 @@ import ProductModel from './models/ProductModel.js';
 import {sendOrderMail} from "./services/emailService.js"
 
 import Card from './models/CardModel.js';
+import { orderReceipts } from './services/orderReceipt.js';
 
 const stripe = new Stripe("sk_test_51NaHdVSB16uFZUayGCVHypLgKL4fRIuoZriMD9DOn1x1e5frVWq2siXj49xmNNiewNo957LQ0rLPJzEVOhi9YU6q00BoZfvm3K");
 
@@ -101,10 +102,12 @@ app.post('/create-payment-intent', async (req, res) => {
 
     const clientSecret = paymentIntent.client_secret;
 
+    
+
     //sent to users
-    await  sendOrderMail(userEmail , orderDetails);
+    await  sendOrderMail(userEmail , orderReceipts(orderDetails));
     //sent to admin
-    await sendOrderMail(adminEmail,orderDetails);
+    await sendOrderMail(adminEmail,orderReceipts(orderDetails));
     
     res.status(200).send({
       clientSecret: paymentIntent.client_secret,
