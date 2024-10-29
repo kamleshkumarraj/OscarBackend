@@ -31,7 +31,7 @@ export const sendOrderMail = async (email, message) => {
             from: process.env.EMAIL_USER,
             to: email,
             subject: 'your order details',
-            text: JSON.stringify(message),
+            html: message,
         });
     } catch (error) {
         console.error('Error sending email:', error);
